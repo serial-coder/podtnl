@@ -1,20 +1,28 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: home
+---
+<img align="center" width="1250" src="./images/tunnel.png">
+<iframe src="https://ghbtns.com/github-btn.html?user=narendranathreddythota&repo=podtnl&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+<iframe src="https://ghbtns.com/github-btn.html?user=narendranathreddythota&repo=podtnl&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+<iframe src="https://ghbtns.com/github-btn.html?user=narendranathreddythota&type=follow&count=true&size=large" frameborder="0" scrolling="0" width="350" height="30" title="GitHub"></iframe>
+<hr>
+<br>
 
 Access Pod Online using Podtnl
 ==========
-[![Build Status](https://travis-ci.com/narendranathreddythota/podtnl.svg?branch=master)](https://travis-ci.com/narendranathreddythota/podtnl)
+[![wercker status](https://app.wercker.com/status/11cd0df4d8d696f68146c8014eb042c3/s/master "wercker status")](https://app.wercker.com/project/byKey/11cd0df4d8d696f68146c8014eb042c3)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Go Report Card](https://goreportcard.com/badge/github.com/narendranathreddythota/podtnl)](https://goreportcard.com/report/github.com/narendranathreddythota/podtnl)
 [![Release](https://img.shields.io/badge/release-1.0-brightgreen.svg)](https://github.com/narendranathreddythota/podtnl/releases/tag/1.0)
-
-<img align="center" width="1250" src="docs/images/tunnel.png">
-<hr>
-<img align="right" width="550" src="docs/images/recorder.gif">
 
  - Expose your pod to Online easily from any kubernetes clusters without creating a kubernetes service.
 
  - Clusters including minikube, kind, PKS, AKS, GKE, DK, etc
 
- - No need to worry about accessing your application during development, forget about the following buzz words 
+ - No need to worry about accessing your application during development, forgot about the following buzz words 
    [ingress, controller, loadbalancer, Public IP, etc]
 
 **Podtnl** uses two concepts: 
@@ -80,7 +88,7 @@ Currently **Podtnl** support only Ngrok as tunnel provider
 ```
 ### HTTP
 ```shell
-$ podtnl -provider ngrok -podname couchdb0-64d95cccc5-5phqz -podport 5984 -auth=false
+$ podtnl -provider ngrok -podname couchdb0-64d95cccc5-5phqz -podport 5984
 
 Expected Output:
 [INFO] ...Tunnel provider ngrok
@@ -100,7 +108,7 @@ Handling connection for 5984
 ```
 ### TCP
 ```shell
-$ podtnl -provider ngrok -podname orderer1-7cb4b7565-nv95k -podport 7050 -protocol tcp 
+$ podtnl -provider ngrok -podname orderer1-7cb4b7565-nv95k -podport 7050 -protocol tcp
 
 Expected Output:
 [INFO] ...Tunnel provider ngrok
@@ -112,7 +120,9 @@ Expected Output:
 ```
 ## Note:
 
-Please switch context to the target cluster which is running in Minikube or Kind or AKS or PKS or etc
+- Please switch context to the target cluster which is running in Minikube or Kind or AKS or PKS, etc
+- Do not forgot to hit <<<< ^C [CTL + C] >>>> in order to close the open tunnels
+  
 ```shell
 $ kubectl config use-context {cluster_name} 
 ```
@@ -130,9 +140,12 @@ Then the following also works
 ```shell
 $ podtnl -provider ngrok -providerPath /usr/local/bin/ngrok -podname couchdb0-64d95cccc5-5phqz -podport 5984 -auth=false
 ```
-> ***Do not forgot to hit <<<< ^C [CTL + C] >>>> in order to close the open tunnels***
 
-## Error
+## Demo:
+<img position="absolute" width="850" src="./images/recorder.gif">
+<hr>
+<br>
+## Error Scenarios:
 ### Wrong Pod 
 ```shell
 ➜  ~ podtnl -provider ngrok -podname somedummypodnameorwrongname -podport 5984
